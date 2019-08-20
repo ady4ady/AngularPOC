@@ -1,0 +1,41 @@
+
+
+
+  <form *ngIf="!loggedin() && !signup" #loginForm="ngForm" class="form-signin" (ngSubmit)="login(); loginForm.reset()">
+    <div class="signindiv">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="email" id="inputEmail" class="form-control" name="username" placeholder="Email address" required autofocus="" [(ngModel)]="model.username">
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required [(ngModel)]="model.password">
+
+      <button class="btn btn-lg btn-primary btn-block" [disabled]="!loginForm.valid" type="submit">Sign in</button>
+    </div>
+    
+    <button class="btn btn-lg btn-success btn-block" style="margin-top:10px;" type="button" (click)="hideorshowSignIn()">Sign Up</button>
+  </form>
+  <form *ngIf="!loggedin()  && signup" #signupForm="ngForm" style="margin-top:50px;" class="form-signin" (ngSubmit)="register(); signupForm.reset()">
+    <div class="signinup">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+      <label for="inputEmail" class="sr-only">First Name</label>
+      <input type="email" id="inputEmail" class="form-control" name="firstname" placeholder="First name" required autofocus="" [(ngModel)]="model.firstname">
+      <label for="inputEmail" class="sr-only">Last Name</label>
+      <input type="email" id="inputEmail" class="form-control" name="lastname" placeholder="Last name" required autofocus="" [(ngModel)]="model.lastname">
+      <label for="inputEmail" class="sr-only">Contact</label>
+      <input type="email" id="inputEmail" class="form-control" name="contact" placeholder="Contact" autofocus="" [(ngModel)]="model.contact">
+
+      <label for="inputEmail" class="sr-only">Address</label>
+      <textarea type="email" id="inputEmail" class="form-control" name="address" placeholder="Address" autofocus="" [(ngModel)]="model.address">
+    </textarea>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="email" id="inputEmail" class="form-control" name="username" placeholder="Email address" required autofocus="" [(ngModel)]="model.username">
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required [(ngModel)]="model.password">
+      <label for="inputPassword" class="sr-only">Confirm Password</label>
+      <input type="password" id="inputPassword" class="form-control" name="confirmpassword" placeholder="Confirm Password" required [(ngModel)]="model.confirmpassword">
+      <button class="btn btn-lg btn-success btn-block" style="margin-top:10px;" [disabled]="!signupForm.valid" type="submit">Sign Up</button>
+
+      <button class="btn btn-lg btn-danger btn-block" style="margin-top:10px;" type="button" *ngIf="signup" (click)="hideorshowSignIn(); signupForm.reset()">Cancel</button>
+
+    </div> 
+  </form>

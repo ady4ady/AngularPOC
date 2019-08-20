@@ -30,7 +30,12 @@ namespace CarOrderingWebApi
         {
             services.AddDbContext<CarOrderingDBContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddOData();
+            ////services.AddCors(c =>
+            ////{
+            ////    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            ////});
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSpaStaticFiles(c => { c.RootPath = "ClientApp/dist"; });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +46,10 @@ namespace CarOrderingWebApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod());
             //app.UseMvc();
             app.UseMvc(routebuilder =>
             {

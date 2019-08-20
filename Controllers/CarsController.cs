@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CarOrderingWebApi.Models;
+using Microsoft.AspNet.OData;
 
 namespace CarOrderingWebApi.Controllers
 {
@@ -21,6 +22,7 @@ namespace CarOrderingWebApi.Controllers
         }
 
         // GET: api/Cars
+        [EnableQuery]
         [HttpGet]
         public IEnumerable<Cars> GetCars()
         {

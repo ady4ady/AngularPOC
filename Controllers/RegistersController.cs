@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CarOrderingWebApi.Models;
 using Microsoft.AspNet.OData;
+using CarOrderingWebApi.ViewModels;
 
 namespace CarOrderingWebApi.Controllers
 {
-    [Route("api/[controller]")]
+
     [ApiController]
     public class RegistersController : ControllerBase
     {
@@ -22,6 +23,7 @@ namespace CarOrderingWebApi.Controllers
         }
 
         // GET: api/Registers
+        [Route("api/[controller]")]
         [EnableQuery]
         [HttpGet]
         public IEnumerable<Register> GetRegister()
@@ -30,6 +32,7 @@ namespace CarOrderingWebApi.Controllers
         }
 
         // GET: api/Registers/5
+        [Route("api/[controller]")]
         [EnableQuery]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetRegister([FromRoute] int id)
@@ -50,6 +53,7 @@ namespace CarOrderingWebApi.Controllers
         }
 
         // PUT: api/Registers/5
+        [Route("api/[controller]")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRegister([FromRoute] int id, [FromBody] Register register)
         {
@@ -85,6 +89,7 @@ namespace CarOrderingWebApi.Controllers
         }
 
         // POST: api/Registers
+        [Route("api/[controller]")]
         [HttpPost]
         public async Task<IActionResult> PostRegister([FromBody] Register register)
         {
@@ -100,6 +105,7 @@ namespace CarOrderingWebApi.Controllers
         }
 
         // DELETE: api/Registers/5
+        [Route("api/[controller]")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRegister([FromRoute] int id)
         {
@@ -123,6 +129,50 @@ namespace CarOrderingWebApi.Controllers
         private bool RegisterExists(int id)
         {
             return _context.Register.Any(e => e.Id == id);
+        }
+
+        // POST: api/RegisterUser
+        [Route("api/RegisterUser")]
+        [HttpPost]
+        public async Task<IActionResult> RegisterUser([FromBody] RegisterVm registerVm)
+        {
+            try
+            {
+                var usernameExist = await _context.Login.AnyAsync(x => x.Username == registerVm.Username);
+
+                if (usernameExist)
+                {
+                    return NotFound();
+                }
+
+                Register registerdetails = new Register()
+                {
+                    FirstName = registerVm.FirstName,
+                    LastName = registerVm.LastName,
+                    Contact = registerVm.Contact,
+                    Address = registerVm.Address
+                };
+                _context.Register.Add(registerdetails);
+
+                await _context.SaveChangesAsync();
+
+                Login newUser = new Login()
+                {
+                    Username = registerVm.Username,
+                    Password = registerVm.Password,
+                    Register = registerdetails
+                };
+
+                _context.Login.Add(newUser);
+
+                await _context.SaveChangesAsync();
+
+                return Ok(true);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

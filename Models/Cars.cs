@@ -14,5 +14,7 @@ namespace CarOrderingWebApi.Models
         public string CarName { get; set; }
 
         public decimal CarPrice { get; set; }
+
+        public string CarImgUrl { get; set; }
     }
 }

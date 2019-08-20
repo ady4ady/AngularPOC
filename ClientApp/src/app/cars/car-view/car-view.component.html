@@ -1,0 +1,27 @@
+<div class="card mb-4" *ngIf="hasCarDetails">
+    <div class="container mt-5">
+        <div class="row">
+             <div class="col-lg-8 col-md-8 col-sm-8">
+                  
+    <div class="card-img-wrapper">
+        <img class="card-img-top" src='../../../assets/Images/{{carDetails.carImgUrl}}' alt="{{carDetails.carName}}">
+        
+   </div>
+</div>
+   <div class="col-lg-4 col-md-4 col-sm-4">
+   <div class="card-body mt-5">
+       <h6 class="card-title text-center mb-1">
+Brand: {{carDetails.carName}}
+       </h6>
+       <p class="card-text text-muted text-center">Price: ${{carDetails.carPrice}}</p>
+       <button class="btn btn-primary" style="margin-left: 40%" (click)="redirectToHome()">Back</button>
+   </div>
+</div>   
+            </div>
+        </div>
+    </div>
+   
+   
+   
+   
+ 

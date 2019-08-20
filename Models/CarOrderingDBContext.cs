@@ -33,6 +33,14 @@ namespace CarOrderingWebApi.Models
                         Password = "admin",
                         RegisterId = 1
                     });
+
+            modelBuilder.Entity<Cars>().HasData(
+                new Cars { CarId = 1, CarName = "Audi", CarPrice = 4343439, CarImgUrl = "Audi.jpg" },
+                new Cars { CarId = 2, CarName = "Benz", CarPrice = 3545688, CarImgUrl = "benz.jpeg" },
+                new Cars { CarId = 3, CarName = "Jaguar", CarPrice = 5678777, CarImgUrl = "jaguar.jpg" },
+                new Cars { CarId = 4, CarName = "Ferrari", CarPrice = 63468327, CarImgUrl = "ferrari.jpg" },
+                new Cars { CarId = 5, CarName = "Lamborghini", CarPrice = 976253562, CarImgUrl = "lamborghini.jpg" },
+                new Cars { CarId = 6, CarName = "Skoda", CarPrice = 672637373, CarImgUrl = "skoda.jpg" });
         }
 
         public DbSet<Register> Register { get; set; }

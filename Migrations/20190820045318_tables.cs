@@ -14,7 +14,8 @@ namespace CarOrderingWebApi.Migrations
                     CarId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CarName = table.Column<string>(nullable: true),
-                    CarPrice = table.Column<decimal>(nullable: false)
+                    CarPrice = table.Column<decimal>(nullable: false),
+                    CarImgUrl = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -45,7 +46,7 @@ namespace CarOrderingWebApi.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Username = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
-                    RegisterId = table.Column<int>(nullable: false)
+                    RegisterId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -64,8 +65,8 @@ namespace CarOrderingWebApi.Migrations
                 {
                     OrderId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CarId = table.Column<int>(nullable: false),
-                    RegistrationId = table.Column<int>(nullable: false)
+                    CarId = table.Column<int>(nullable: true),
+                    RegistrationId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -82,6 +83,19 @@ namespace CarOrderingWebApi.Migrations
                         principalTable: "Register",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Cars",
+                columns: new[] { "CarId", "CarImgUrl", "CarName", "CarPrice" },
+                values: new object[,]
+                {
+                    { 1, "Audi.jpg", "Audi", 4343439m },
+                    { 2, "benz.jpeg", "Benz", 3545688m },
+                    { 3, "jaguar.jpg", "Jaguar", 5678777m },
+                    { 4, "ferrari.jpg", "Ferrari", 63468327m },
+                    { 5, "lamborghini.jpg", "Lamborghini", 976253562m },
+                    { 6, "skoda.jpg", "Skoda", 672637373m }
                 });
 
             migrationBuilder.InsertData(

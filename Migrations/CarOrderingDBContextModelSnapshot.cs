@@ -25,6 +25,8 @@ namespace CarOrderingWebApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CarImgUrl");
+
                     b.Property<string>("CarName");
 
                     b.Property<decimal>("CarPrice");
@@ -32,6 +34,15 @@ namespace CarOrderingWebApi.Migrations
                     b.HasKey("CarId");
 
                     b.ToTable("Cars");
+
+                    b.HasData(
+                        new { CarId = 1, CarImgUrl = "Audi.jpg", CarName = "Audi", CarPrice = 4343439m },
+                        new { CarId = 2, CarImgUrl = "benz.jpeg", CarName = "Benz", CarPrice = 3545688m },
+                        new { CarId = 3, CarImgUrl = "jaguar.jpg", CarName = "Jaguar", CarPrice = 5678777m },
+                        new { CarId = 4, CarImgUrl = "ferrari.jpg", CarName = "Ferrari", CarPrice = 63468327m },
+                        new { CarId = 5, CarImgUrl = "lamborghini.jpg", CarName = "Lamborghini", CarPrice = 976253562m },
+                        new { CarId = 6, CarImgUrl = "skoda.jpg", CarName = "Skoda", CarPrice = 672637373m }
+                    );
                 });
 
             modelBuilder.Entity("CarOrderingWebApi.Models.Login", b =>
