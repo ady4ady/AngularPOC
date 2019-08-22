@@ -4,14 +4,16 @@ using CarOrderingWebApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CarOrderingWebApi.Migrations
 {
     [DbContext(typeof(CarOrderingDBContext))]
-    partial class CarOrderingDBContextModelSnapshot : ModelSnapshot
+    [Migration("20190821154927_changes")]
+    partial class changes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,11 +76,11 @@ namespace CarOrderingWebApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CarId");
+                    b.Property<int?>("CarId");
 
                     b.Property<string>("OrderIdCode");
 
-                    b.Property<int>("RegistrationId");
+                    b.Property<int?>("RegistrationId");
 
                     b.HasKey("OrderId");
 
@@ -123,13 +125,11 @@ namespace CarOrderingWebApi.Migrations
                 {
                     b.HasOne("CarOrderingWebApi.Models.Cars", "Car")
                         .WithMany("Orders")
-                        .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CarId");
 
                     b.HasOne("CarOrderingWebApi.Models.Register", "Registration")
                         .WithMany("Orders")
-                        .HasForeignKey("RegistrationId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("RegistrationId");
                 });
 #pragma warning restore 612, 618
         }

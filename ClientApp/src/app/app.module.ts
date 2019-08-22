@@ -16,6 +16,8 @@ import { CarListComponent } from './cars/car-list/car-list.component';
 import { CarCardComponent } from './cars/car-card/car-card.component';
 import { CarViewComponent } from './cars/car-view/car-view.component';
 import { AlertifyService } from './_services/alertify.service';
+import { Globals } from './_services/globals.service';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { AlertifyService } from './_services/alertify.service';
     OrdersComponent,
     CarListComponent,
     CarCardComponent,
-    CarViewComponent
+    CarViewComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,7 @@ import { AlertifyService } from './_services/alertify.service';
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthService, CarService, AlertifyService],
+  providers: [AuthService, CarService, AlertifyService, Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

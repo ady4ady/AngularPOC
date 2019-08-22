@@ -9,8 +9,14 @@ namespace CarOrderingWebApi.Models
     {
         public int OrderId { get; set; }
 
-        public Cars Car { get; set; }
+        public string OrderIdCode { get; set; }
 
-        public Register Registration { get; set; }
+        public int CarId { get; set; }
+
+        public virtual Cars Car { get; set; }
+
+        public int RegistrationId { get; set; }
+
+        public virtual Register Registration { get; set; }
     }
 }

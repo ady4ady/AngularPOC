@@ -34,7 +34,7 @@ export class CarViewComponent implements OnInit {
         }
       }
 
-      redirectToHome(){
+      redirectToHome() {
         this.router.navigate(['/home']);
       }
 }

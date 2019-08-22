@@ -16,5 +16,7 @@ namespace CarOrderingWebApi.Models
         public decimal CarPrice { get; set; }
 
         public string CarImgUrl { get; set; }
+
+        public ICollection<Order> Orders { get; set; }
     }
 }
